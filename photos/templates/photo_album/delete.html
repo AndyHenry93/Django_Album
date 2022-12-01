@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Delete Post{% endblock title %}
+
+{% block content %}
+    <h1>Confirm post deletion</h1>
+    <p>Are you sure you want to delete this post?</p>
+    <div style="display: flex; flex-direction: row;">
+        <form action="" method="post">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Delete</button>
+        </form>
+        <a href="{% url 'photo:photo_list' %}" style="margin-left: 5px"><button class="btn btn-success" type="submit">Cancel</button></a>
+    </div>
+{% endblock content %}

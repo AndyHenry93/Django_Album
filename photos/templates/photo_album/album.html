@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Photo Album{% endblock title %}
+
+{% block content %}  
+    <div>
+        <h3>Albums</h3>
+        <ul>
+            <li style="display: inline-block; padding-left:20px;">
+                <a href="{% url 'photo:photo_list' %}">All Photos</a>
+            </li>
+            {% for album in user_albums %}
+                <li style="display: inline-block; padding-left:20px;">
+                    <a href="{{album.get_absolute_url}}">{{album.name}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class ="container-fluid">
+        <div class="card-group content" style = "margin-top:30px;">
+            <div class="row row-cols-1 row-cols-md-4 g-2">
+                {% for photo in photos %}
+                    <div class="card">
+                        <a href="{{photo.get_absolute_url}}">
+                            <img src="{{photo.image.url}}" class="img-fluid img-thumbnail" alt="..." >
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{photo.title}}</h5>
+                            <p class="card-text">{{photo.description|truncatewords:10}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small >Added: {{photo.created}}</small>
+                            <small class="text-muted" style = "text-align: center; margin-left: 15px;"><a href="{% url 'photo:edit' photo.id photo.slug %}">Edit Post</a></small>
+                        </div>
+                    </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

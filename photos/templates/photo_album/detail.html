@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Post Detail{% endblock title %}
+
+{% block content %}
+<div>
+
+    <h2>{{photo.title}}</h2>
+    <img src="{{photo.image.url}}" alt="" width="350px" height="350px">
+    <hr>
+    <p>{{photo.description}}</p>
+</div>
+{% endblock content %}
