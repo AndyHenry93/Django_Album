@@ -3,7 +3,11 @@
 
 {% block title %}Photo Album{% endblock title %}
 
-{% block content %}  
+{% block content %} 
+    <!--
+        - first I show all the photos in the database by calling the photo_list url.
+        - next I call a for loop to display each user specific album by calling the absoulte url of the album
+    --> 
     <div>
         <h3>Albums</h3>
         <ul>
