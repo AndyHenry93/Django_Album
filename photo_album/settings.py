@@ -29,7 +29,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-# CSRF_TRUSTED_ORIGINS = ['DOMAIN NAME']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-ee8c.up.railway.app']
 
 
 # Application definition
