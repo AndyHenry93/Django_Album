@@ -14,6 +14,7 @@
             <div class='card' style ="margin-top: 3rem;">
                 <div class='card-header'>
                     <h3>Albums</h3>
+                    <a href="{% url 'photo:album_create' %}"><button class="btn btn-outline-success" style="float: right;">Create Album</button></a>
                 </div>
                 <ul class='list-group list-group-flush'>
                         <li class=list-group-item>
@@ -22,6 +23,7 @@
                     {% for album in user_albums %}
                         <li class=list-group-item>
                             <a href="{{album.get_absolute_url}}">{{album.name}}</a>
+                            <a href="{% url 'photo:album_delete' album.id %}"><button class="btn btn-outline-danger" style='margin-left:40%;'>Delete</button></a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -40,8 +42,10 @@
                                 <p class="card-text">{{photo.description|truncatewords:10}}</p>
                             </div>
                             <div class="card-footer">
-                                <small >Added: {{photo.created}}</small>
+                                <small style = "text-align: center; margin-right: 15px;">Photo by: {{user.first_name}} {{user.last_name}}</small>
+                                <small>Added: {{photo.created}}</small>
                                 <small class="text-muted" style = "text-align: center; margin-left: 15px;"><a href="{% url 'photo:edit' photo.id photo.slug %}">Edit Post</a></small>
+                                <small class="text-muted" style = "text-align: center; margin-left: 15px;"><a href="{% url 'photo:photo_delete' photo.id %}">Delete Post</a></small>
                             </div>
                         </div>
                     {%endfor%}

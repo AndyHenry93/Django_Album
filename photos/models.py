@@ -9,7 +9,7 @@ comment for models
 """
 
 class Album(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE, db_index=True,null=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE, db_index=True)
     name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100, unique=True)
     
@@ -23,11 +23,12 @@ class Album(models.Model):
         album_slug = (str(self.user) +'_'+ self.name)
         self.slug = slugify(album_slug)
         return super(Album, self).save(*args,**kwargs)
+
     
     
 class Photo(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE, db_index=True)
-    album = models.ForeignKey(Album,on_delete=models.CASCADE, related_name ='photo')
+    album = models.ForeignKey(Album,on_delete=models.SET_NULL, related_name ='photo', blank=True, null=True)
     title = models.CharField(max_length=200,blank = False, db_index=True)
     description = models.TextField(blank = True)
     image = models.ImageField(blank = False,upload_to = 'photo/%Y/%m/%d')
@@ -43,7 +44,6 @@ class Photo(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         return super(Photo, self).save(*args,**kwargs)
-    
         
 
     

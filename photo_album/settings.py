@@ -122,20 +122,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+# AWS S3 Settings
+
+AWS_QUERYSTRING_AUTH = False
+DEFAULT_FILE_STORAGE = str(os.getenv('DEFAULT_FILE_STORAGE'))
+AWS_ACCESS_KEY_ID = str(os.getenv('AWS_ACCESS_KEY_ID'))
+AWS_SECRET_ACCESS_KEY = str(os.getenv('AWS_SECRET_ACCESS_KEY'))
+AWS_STORAGE_BUCKET_NAME = str(os.getenv('AWS_STORAGE_BUCKET_NAME'))
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+
 STATIC_URL = 'static/'
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles/')
 
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-
-# AWS_QUERYSTRING_AUTH = False
-# DEFAULT_FILE_STORAGE = str(os.getenv('DEFAULT_FILE_STORAGE'))
-# AWS_ACCESS_KEY_ID = str(os.getenv('AWS_ACCESS_KEY_ID'))
-# AWS_SECRET_ACCESS_KEY = str(os.getenv('AWS_SECRET_ACCESS_KEY'))
-# AWS_STORAGE_BUCKET_NAME = str(os.getenv('AWS_STORAGE_BUCKET_NAME'))
-# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-# # AWS_DEFAULT_ACL ='public-read'
 
 
 # Default primary key field type
@@ -146,3 +153,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'photo:signin'
 LOGIN_REDIRECT_URL = 'photo:photo_list'
 LOGOUT_URL = 'photo:signout'
+

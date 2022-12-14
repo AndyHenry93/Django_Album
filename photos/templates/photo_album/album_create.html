@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Album Creation {% endblock title %}
+
+{% block content %}
+    <h1>Create your album</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{album_form.as_p}}
+        <input type="submit" value="create">
+    </form>
+{% endblock content %}

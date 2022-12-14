@@ -10,7 +10,10 @@
         <input type="submit" value="Submit">
     </form>
     <br>
-    <a href="{% url 'photo:delete' photo.id %}"><button class="btn btn-danger" type="submit">Delete</button></a>
-    <a href="{% url 'photo:photo_list' %}"><button class="btn btn-success" type="submit">Cancel</button></a>
+    {% if edit_form.album %}
+        <button class="btn btn-outline danger" type="submit"></button>
+    {% endif %}
 {% endblock content %}
 
+{% comment %} <a href="{% url 'photo:photo_delete' photo.id %}"><button class="btn btn-danger" type="submit">Delete</button></a>
+<a href="{% url 'photo:photo_list' %}"><button class="btn btn-success" type="submit">Cancel</button></a> {% endcomment %}

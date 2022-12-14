@@ -22,9 +22,10 @@ class UserCreationForm(forms.ModelForm):
 
 class PhotoEditForm(forms.ModelForm):
     album = forms.ModelChoiceField(queryset=Album.objects.all(), label="Album",required=False)
+    new_album = forms.CharField(max_length=100,label="Create Album",required=False)
     def __init__(self,user,*args,**kwargs):
         super(PhotoEditForm,self).__init__(*args, **kwargs)
-        self.fields['album'].queryset = Album.objects.filter(photo__user = user).distinct()
+        self.fields['album'].queryset = Album.objects.filter(user = user)
     
     class Meta:
         model = Photo
@@ -49,3 +50,7 @@ class PhotoUploadForm(forms.ModelForm):
     class Meta:
         model = Photo
         fields = ('title','description','image')
+
+class AlbumCreationForm(forms.Form):
+    name = forms.CharField(max_length=50,required=True,label="Name")
+
