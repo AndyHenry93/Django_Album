@@ -136,7 +136,7 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 
-DEFAULT_FILE_STORAGE = 'portfolio.storage_backends.MediaStorage'
+DEFAULT_FILE_STORAGE = 'photo_album.storage_backends.MediaStorage'
 
 
 STATIC_URL = 'static/'
