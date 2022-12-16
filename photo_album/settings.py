@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['127.0.0.1']
 ALLOWED_HOSTS = ['127.0.0.1','web-production-2f89.up.railway.app']
@@ -123,28 +123,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-# AWS S3 Settings
 
-DEFAULT_FILE_STORAGE = str(os.getenv('DEFAULT_FILE_STORAGE'))
+
+STATIC_URL = 'static/'
+STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles/')
+
+
+# MEDIA_URL = 'media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# AWS S3 Settings
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_ACCESS_KEY_ID = str(os.getenv('AWS_ACCESS_KEY_ID'))
 AWS_SECRET_ACCESS_KEY = str(os.getenv('AWS_SECRET_ACCESS_KEY'))
-AWS_STORAGE_BUCKET_NAME = 'django-s3-album-bucket'
+AWS_STORAGE_BUCKET_NAME = 'photo-album-django-new'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_QUERYSTRING_AUTH = False
 AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-
-DEFAULT_FILE_STORAGE = 'photo_album.storage_backends.MediaStorage'
-
-
-STATIC_URL = 'static/'
-STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles/')
-
-# MEDIA_URL = '/media/'
-# MEDIA_URL = 'media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 

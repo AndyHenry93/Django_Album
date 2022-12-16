@@ -23,7 +23,7 @@ def photo_list(request,album_slug=None,):
         'user_albums':user_albums,
         'user':user
     }
-    return render(request,'photo_album/album.html',context)
+    return render(request,'photo_album/gallery.html',context)
 
 @login_required()
 def photo_detail(request,id,slug):

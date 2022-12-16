@@ -35,17 +35,19 @@
                     {% for photo in photos %}
                         <div class="card" style ="margin-top: 2rem;">
                             <a href="{{photo.get_absolute_url}}">
-                                <img src="{{photo.image.url}}" class="img-fluid img-thumbnail" alt="..." >
+                                <img margin-right: 8px; src="{{photo.image.url}}" class="img-fluid img-thumbnail" alt="..." >
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title">{{photo.title}}</h5>
                                 <p class="card-text">{{photo.description|truncatewords:10}}</p>
                             </div>
                             <div class="card-footer">
-                                <small style = "text-align: center; margin-right: 15px;">Photo by: {{user.first_name}} {{user.last_name}}</small>
+                                <small style = "text-align: center; margin-right: 8px;">Photo by: {{user.first_name}} {{user.last_name}}</small>
                                 <small>Added: {{photo.created}}</small>
-                                <small class="text-muted" style = "text-align: center; margin-left: 15px;"><a href="{% url 'photo:edit' photo.id photo.slug %}">Edit Post</a></small>
-                                <small class="text-muted" style = "text-align: center; margin-left: 15px;"><a href="{% url 'photo:photo_delete' photo.id %}">Delete Post</a></small>
+                                <div>
+                                    <small class="text-muted" style = "text-align: center; margin-left: 15px;"><a href="{% url 'photo:edit' photo.id photo.slug %}">Edit Post</a></small>
+                                    <small class="text-muted" style = "text-align: center; margin-left: 15px;"><a href="{% url 'photo:photo_delete' photo.id %}">Delete Post</a></small>
+                                </div>
                             </div>
                         </div>
                     {%endfor%}
