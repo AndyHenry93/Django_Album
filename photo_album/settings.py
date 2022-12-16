@@ -28,8 +28,9 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','web-production-31ff.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://web-production-31ff.up.railway.app']
+# ALLOWED_HOSTS = ['127.0.0.1','web-production-31ff.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1']
+# CSRF_TRUSTED_ORIGINS = ['https://web-production-31ff.up.railway.app']
 
 
 # Application definition
@@ -124,24 +125,26 @@ USE_TZ = True
 
 # AWS S3 Settings
 
-AWS_QUERYSTRING_AUTH = False
 DEFAULT_FILE_STORAGE = str(os.getenv('DEFAULT_FILE_STORAGE'))
 AWS_ACCESS_KEY_ID = str(os.getenv('AWS_ACCESS_KEY_ID'))
 AWS_SECRET_ACCESS_KEY = str(os.getenv('AWS_SECRET_ACCESS_KEY'))
-AWS_STORAGE_BUCKET_NAME = str(os.getenv('AWS_STORAGE_BUCKET_NAME'))
+AWS_STORAGE_BUCKET_NAME = 'album-s3-bucket''
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_QUERYSTRING_AUTH = False
 AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
+
+DEFAULT_FILE_STORAGE = 'portfolio.storage_backends.MediaStorage'
 
 
 STATIC_URL = 'static/'
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles/')
 
 # MEDIA_URL = '/media/'
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# MEDIA_URL = 'media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 
