@@ -43,7 +43,7 @@ To ensure optimal performance and scalability, this application leverages:
 1. Clone the repository:
    ```bash
    https://github.com/AndyHenry93/Django_Album.git
-   cd main
+   cd Django_Album
    ```
 
 2. Set up a virtual environment:
